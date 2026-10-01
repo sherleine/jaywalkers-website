@@ -39,11 +39,12 @@
    ========================================= */
 
 .maze-player {
-  width: 100%;
-  height: 100%;
-  position: relative;
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  left: 4%;
+  top: 4%;
   z-index: 8;
-  background-image: url('assets/nigel-frame0.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -53,14 +54,28 @@
   pointer-events: none;
 }
 
+/* Remove the old CSS character completely. These pseudo-elements were
+   creating the dark rectangular glitch over Nigel's face. */
+.maze-player::before,
+.maze-player::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
 @keyframes nigelMouth {
-  0%, 49% { background-image: url('assets/nigel-frame0.png'); }
-  50%, 100% { background-image: url('assets/nigel-frame1.png'); }
+  0%, 49% { background-image: url('assets/nigel-frame0.svg'); }
+  50%, 100% { background-image: url('assets/nigel-frame1.svg'); }
 }
 
 @media (max-width: 650px) {
   .maze-player {
-    background-size: 110% 110%;
+    width: 96%;
+    height: 96%;
+    left: 2%;
+    top: 2%;
+    background-size: contain;
   }
 }
 
