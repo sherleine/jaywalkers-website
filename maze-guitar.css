@@ -2,102 +2,39 @@
    MAZE GOAL — RED PIXEL GUITAR
    ========================================= */
 
-/* Keep the whole guitar inside the goal tile. */
 .maze-cell.goal {
   position: relative;
   background: var(--orange);
-  overflow: hidden;
+  overflow: visible;
 }
 
-/* Pixel-art guitar body: two rounded bouts with a narrow waist. */
-.maze-cell.goal::after {
-  content: "";
+/* Actual pixel-art guitar sprite, kept crisp rather than smoothed. */
+.maze-guitar-sprite {
   position: absolute;
-  width: 48%;
-  height: 52%;
-  left: 25%;
-  top: 42%;
-  z-index: 3;
-  background:
-    /* sound hole */
-    radial-gradient(circle at 50% 48%, #35190f 0 9%, transparent 10%),
-    /* bridge */
-    linear-gradient(#f2c16a 0 0) 42% 67% / 16% 5% no-repeat,
-    #c92727;
-  border: 2px solid #2b170b;
-  box-shadow:
-    2px 2px 0 #7d1717,
-    inset 2px 0 0 #ef5a50,
-    inset -2px -2px 0 #941919;
-  clip-path: polygon(
-    36% 0,
-    64% 0,
-    67% 12%,
-    61% 25%,
-    72% 30%,
-    88% 29%,
-    100% 42%,
-    100% 68%,
-    88% 88%,
-    68% 100%,
-    50% 94%,
-    32% 100%,
-    12% 88%,
-    0 68%,
-    0 42%,
-    12% 29%,
-    28% 30%,
-    39% 25%,
-    33% 12%
-  );
-  transform: rotate(-25deg);
-  transform-origin: 50% 50%;
-  animation: pixelGuitarFloat 1.7s ease-in-out infinite;
-}
-
-/* Long neck + headstock. Small pixel blocks suggest tuning pegs. */
-.maze-cell.goal::before {
-  content: "";
-  position: absolute;
-  width: 9%;
-  height: 62%;
-  left: 47%;
-  top: 4%;
-  z-index: 4;
-  background:
-    linear-gradient(#e7b45e 0 0) 50% 5% / 100% 8% no-repeat,
-    #8f1c1c;
-  border: 2px solid #2b170b;
-  box-shadow:
-    2px 2px 0 #7d1717,
-    -4px 6px 0 -2px #2b170b,
-    6px 11px 0 -2px #2b170b;
-  transform: rotate(36deg);
-  transform-origin: 50% 88%;
-  animation: pixelGuitarNeckFloat 1.7s ease-in-out infinite;
+  width: 82%;
+  height: 82%;
+  left: 9%;
+  top: 9%;
+  z-index: 5;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transform-origin: 50% 70%;
+  animation: pixelGuitarFloat 1.7s steps(2, end) infinite;
+  pointer-events: none;
 }
 
 @keyframes pixelGuitarFloat {
   0%, 100% {
-    transform: rotate(-25deg) translate(0, 0);
+    transform: translateY(0) rotate(-2deg);
   }
   50% {
-    transform: rotate(-22deg) translate(0, -2px);
-  }
-}
-
-@keyframes pixelGuitarNeckFloat {
-  0%, 100% {
-    transform: rotate(36deg) translate(0, 0);
-  }
-  50% {
-    transform: rotate(33deg) translate(0, -2px);
+    transform: translateY(-3px) rotate(2deg);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .maze-cell.goal::before,
-  .maze-cell.goal::after {
+  .maze-guitar-sprite {
     animation: none;
   }
 }
