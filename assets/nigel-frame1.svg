@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 48" shape-rendering="crispEdges">
+  <!-- transparent pixel-art Nigel, open mouth frame -->
+  <path fill="#171514" d="M8 4h16v2h3v3h2v10h-3v5h-2v2h-1v3h-1v5h-2v3h-8v-3h-2v-5H8v-3H6v-2H4v-5H2V9h3V7h3z"/>
+  <path fill="#201c1a" d="M8 6h16v2h3v7H5V9h3z"/>
+  <path fill="#a96f50" d="M7 12h18v10h-2v4H9v-4H7z"/>
+  <path fill="#c88967" d="M9 13h14v9H9z"/>
+  <path fill="#151313" d="M11 16h2v2h-2zM19 16h2v2h-2z"/>
+  <path fill="#241a17" d="M14 20h4v2h-4z"/>
+  <path fill="#7b8061" d="M8 25h16l3 7-5 2-2-5h-8l-2 5-5-2z"/>
+  <path fill="#6b704f" d="M14 25h4v8h-4z"/>
+  <path fill="#1d1a19" d="M10 34h12v8h-3v6h-4v-6h-2v6H9v-6h1z"/>
+  <path fill="#35302b" d="M9 40h6v7H9zM18 40h5v7h-5z"/>
+  <!-- arms -->
+  <path fill="#c88967" d="M5 27h4v8H6v-3H4v-3h1zM23 27h4v2h1v4h-2v2h-3z"/>
+  <!-- watch -->
+  <path fill="#262626" d="M24 29h3v4h-3z"/>
+  <path fill="#9a9a8f" d="M24 30h3v2h-3z"/>
+  <path fill="#45443f" d="M24 29h3v1h-3zM24 32h3v1h-3z"/>
+</svg>
