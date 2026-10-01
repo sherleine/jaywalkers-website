@@ -26,8 +26,6 @@ section { padding: clamp(72px, 9vw, 130px) 7vw; }
 .section-cream { background: var(--cream); }
 .section-brown { background: var(--brown); color: var(--cream); }
 .section-orange { background: var(--orange); color: var(--cream); }
-
-/* HERO */
 .hero { min-height: calc(100vh - 119px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 34px; padding-top: 70px; padding-bottom: 34px; overflow: hidden; }
 .hero-photo-wrap { width: min(74vw, 780px); display: flex; justify-content: center; }
 .hero-photo-placeholder { width: min(74vw, 780px); aspect-ratio: 16 / 8.5; display: grid; place-items: center; background: var(--cream); border: 5px solid var(--brown); box-shadow: 14px 14px 0 var(--brown), -10px -10px 0 var(--orange); transform: rotate(-1deg); overflow: hidden; }
@@ -37,8 +35,7 @@ section { padding: clamp(72px, 9vw, 130px) 7vw; }
 .jaywalkers-float { appearance: none; border: 0; background: transparent; padding: 10px 22px 22px; cursor: pointer; color: var(--brown); display: inline-flex; flex-direction: column; align-items: center; line-height: .78; position: relative; transform-origin: center; animation: titleFloat 4.2s ease-in-out infinite; transition: transform .35s cubic-bezier(.2,.75,.2,1), filter .35s ease; }
 .jaywalkers-float:hover { animation-play-state: paused; transform: translateY(-8px) rotate(-1deg) scale(1.035); filter: drop-shadow(8px 12px 0 rgba(63,36,15,.18)); }
 .jaywalkers-float:focus-visible { outline: 4px dashed var(--cream); outline-offset: 8px; }
-.jaywalkers-float::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 0; height: 5px; background: var(--brown); transform: translateX(-50%); transition: width .35s ease; }
-.jaywalkers-float:hover::after { width: 70%; }
+.jaywalkers-float::after { display: none; }
 .jaywalkers-float .the-line { color: var(--cream); font-family: var(--display); font-size: clamp(3rem, 7vw, 6.5rem); letter-spacing: -.055em; }
 .jaywalkers-float .name-line { color: var(--brown); font-family: var(--display); font-size: clamp(4.5rem, 13vw, 13rem); letter-spacing: -.065em; }
 @keyframes titleFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 25% { transform: translateY(-7px) rotate(.45deg); } 50% { transform: translateY(-2px) rotate(-.35deg); } 75% { transform: translateY(-9px) rotate(.25deg); } }
