@@ -15,6 +15,20 @@
   const style = document.createElement('style');
   style.textContent = `
     body.intro-active { overflow: hidden; }
+
+    body.intro-active .site-header,
+    body.intro-active .hero-photo-wrap,
+    body.intro-active .hero-title {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .site-header,
+    .hero-photo-wrap,
+    .hero-title {
+      transition: opacity 900ms ease, transform 900ms cubic-bezier(.2,.75,.2,1);
+    }
+
     .intro-screen {
       position: fixed;
       inset: 0;
@@ -26,6 +40,7 @@
       overflow: hidden;
       animation: introExit 900ms cubic-bezier(.77,0,.18,1) 2600ms forwards;
     }
+
     .intro-title {
       display: flex;
       flex-direction: column;
@@ -35,6 +50,7 @@
       line-height: .76;
       transform: translateY(4vh);
     }
+
     .intro-the,
     .intro-name {
       display: block;
@@ -42,6 +58,7 @@
       font-weight: 900;
       letter-spacing: -.065em;
     }
+
     .intro-the {
       color: #F2C980;
       font-size: clamp(4rem, 10vw, 9rem);
@@ -49,6 +66,7 @@
       transform: translateY(40px) scale(.92);
       animation: introThe 900ms cubic-bezier(.2,.75,.2,1) 250ms forwards;
     }
+
     .intro-name {
       color: #3F240F;
       font-size: clamp(5rem, 14vw, 14rem);
@@ -56,6 +74,7 @@
       transform: translateY(65px) scale(.92);
       animation: introName 1100ms cubic-bezier(.2,.75,.2,1) 600ms forwards;
     }
+
     .intro-screen::after {
       content: "";
       position: absolute;
@@ -68,19 +87,24 @@
       transform-origin: left;
       animation: introLine 1800ms cubic-bezier(.2,.75,.2,1) 700ms forwards;
     }
+
     @keyframes introThe {
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
+
     @keyframes introName {
       to { opacity: 1; transform: translateY(0) scale(1); }
     }
+
     @keyframes introLine {
       to { transform: scaleX(1); }
     }
+
     @keyframes introExit {
       0% { clip-path: inset(0 0 0 0); opacity: 1; }
       100% { clip-path: inset(0 0 100% 0); opacity: 1; visibility: hidden; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       .intro-screen,
       .intro-the,
@@ -88,8 +112,15 @@
       .intro-screen::after {
         animation: none !important;
       }
+
       .intro-screen { display: none; }
       body.intro-active { overflow: auto; }
+      body.intro-active .site-header,
+      body.intro-active .hero-photo-wrap,
+      body.intro-active .hero-title {
+        opacity: 1;
+        transform: none;
+      }
     }
   `;
 
