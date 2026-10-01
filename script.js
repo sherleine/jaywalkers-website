@@ -78,7 +78,10 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
   const board = document.getElementById('maze-board');
   const status = document.getElementById('maze-status');
   if (!game || !openButton || !board) return;
-  const maze = ['111111111111111','100000100000001','101110101111101','101000100000101','101011111110101','101000100000101','101111111010101','100000001010001','111111101011101','100000001000001','101111111111101'];
+
+  // Connected 15x11 maze: start at (1,1) has a continuous path to the guitar at (9,13).
+  // The opening at (6,7) joins the upper and lower sections without changing the rest of the layout.
+  const maze = ['111111111111111','100000100000001','101110101111101','101000100000101','101011111110101','101000100000101','101111101010101','100000001010001','111111101011101','100000001000001','101111111111101'];
   const player = { row: 1, col: 1 };
   const goal = { row: 9, col: 13 };
   let started = false;
