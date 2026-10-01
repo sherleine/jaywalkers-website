@@ -92,7 +92,14 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
     maze.forEach((row,rowIndex) => [...row].forEach((cell,colIndex) => {
       const tile=document.createElement('div'); tile.className=`maze-cell ${cell==='1'?'wall':'floor'}`;
       if(rowIndex===goal.row && colIndex===goal.col){ tile.classList.add('goal'); tile.setAttribute('aria-label','Red guitar goal'); const guitar=document.createElement('img'); guitar.className='maze-guitar-sprite'; guitar.src='assets/guitar-goal.svg'; guitar.alt='Red guitar'; guitar.setAttribute('aria-hidden','true'); tile.appendChild(guitar); }
-      if(rowIndex===player.row && colIndex===player.col && started){ const sprite=document.createElement('div'); sprite.className='maze-player'; sprite.setAttribute('aria-label','Player'); tile.appendChild(sprite); }
+      if(rowIndex===player.row && colIndex===player.col && started){
+        const sprite=document.createElement('img');
+        sprite.className='maze-player-sprite';
+        sprite.src='assets/nigel-frame0.svg';
+        sprite.alt='Nigel';
+        sprite.setAttribute('aria-hidden','true');
+        tile.appendChild(sprite);
+      }
       board.appendChild(tile);
     }));
   }
