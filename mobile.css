@@ -47,7 +47,7 @@
     width: 100%;
   }
 
-  /* Extra-large mobile band-name sizing. */
+  /* Double the mobile band-name size. */
   .jaywalkers-float {
     max-width: 100%;
     padding: 6px 0 14px;
@@ -55,11 +55,11 @@
   }
 
   .jaywalkers-float .the-line {
-    font-size: clamp(2.2rem, 9vw, 3rem);
+    font-size: clamp(4.4rem, 18vw, 6rem);
   }
 
   .jaywalkers-float .name-line {
-    font-size: clamp(3.6rem, 17vw, 5.8rem);
+    font-size: clamp(7.2rem, 34vw, 11.6rem);
     letter-spacing: -.085em;
     white-space: nowrap;
   }
