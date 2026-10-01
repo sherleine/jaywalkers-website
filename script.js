@@ -78,7 +78,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
   const board = document.getElementById('maze-board');
   const status = document.getElementById('maze-status');
   if (!game || !openButton || !board) return;
-  const maze = ['111111111111111','100000100000001','101110101111101','101000100000101','101011111110101','101000000010101','101111111010101','100000001010001','111111101011101','100000001000001','101111111111101'];
+  const maze = ['111111111111111','100000100000001','101110101111101','101000100000101','101011111110101','101000100000101','101111111010101','100000001010001','111111101011101','100000001000001','101111111111101'];
   const player = { row: 1, col: 1 };
   const goal = { row: 9, col: 13 };
   let started = false;
@@ -95,7 +95,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
       if(rowIndex===player.row && colIndex===player.col && started){
         const sprite=document.createElement('img');
         sprite.className='maze-player-sprite';
-        sprite.src='assets/nigel-frame0.svg';
+        sprite.src='assets/nigel-frame1.png';
         sprite.alt='Nigel';
         sprite.setAttribute('aria-hidden','true');
         tile.appendChild(sprite);
