@@ -35,29 +35,33 @@
 }
 
 /* =========================================
-   NIGEL — STATIC PIXEL CHARACTER
+   NIGEL — ORIGINAL PIXEL CHARACTER
    ========================================= */
 
-.maze-player-sprite {
-  position: absolute;
-  width: 92%;
-  height: 92%;
-  left: 4%;
-  top: 4%;
+.maze-player {
+  width: 100%;
+  height: 100%;
+  position: relative;
   z-index: 8;
-  display: block;
-  object-fit: contain;
-  object-position: center;
+  background-image: url('assets/nigel-frame0.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
+  animation: none !important;
   pointer-events: none;
 }
 
+/* Keep Nigel completely static in the maze. */
+.maze-player::before,
+.maze-player::after {
+  content: none !important;
+  display: none !important;
+}
+
 @media (max-width: 650px) {
-  .maze-player-sprite {
-    width: 96%;
-    height: 96%;
-    left: 2%;
-    top: 2%;
+  .maze-player {
+    background-size: 110% 110%;
   }
 }
