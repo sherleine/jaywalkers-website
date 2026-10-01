@@ -33,7 +33,7 @@
       </div>
 
       <div class="hero-title">
-        <button class="jaywalkers-float" type="button" aria-label="Open The Jaywalkers">
+        <button class="jaywalkers-float" type="button" aria-label="Open The Jaywalkers maze">
           <span class="the-line">The</span>
           <span class="name-line">Jaywalkers</span>
         </button>
@@ -87,6 +87,45 @@
     <img src="assets/logo.webp" alt="The Jaywalkers" />
     <p>© 2026 The Jaywalkers</p>
   </footer>
+
+  <!-- Hidden Easter-egg maze. It opens when the homepage title is clicked. -->
+  <div id="maze-game" class="maze-game" aria-hidden="true">
+    <div class="maze-frame">
+      <button id="maze-home" class="pixel-button maze-home" type="button">HOME</button>
+
+      <div id="maze-start-screen" class="maze-screen maze-start-screen">
+        <div class="maze-kicker">THE JAYWALKERS</div>
+        <h1>MAZE</h1>
+        <p>Find your way in.</p>
+        <button id="maze-start" class="pixel-button pixel-button-large" type="button">START</button>
+      </div>
+
+      <div id="maze-play-screen" class="maze-screen maze-play-screen" hidden>
+        <div class="maze-hud">
+          <span>THE JAYWALKERS</span>
+          <span id="maze-status">FIND YOUR WAY</span>
+        </div>
+
+        <div class="maze-board-wrap">
+          <div id="maze-board" class="maze-board" aria-label="Jaywalkers maze"></div>
+        </div>
+
+        <div class="maze-controls" aria-label="Maze controls">
+          <button class="pixel-button arrow-button up" data-move="up" type="button" aria-label="Move up">▲</button>
+          <button class="pixel-button arrow-button left" data-move="left" type="button" aria-label="Move left">◀</button>
+          <button class="pixel-button arrow-button down" data-move="down" type="button" aria-label="Move down">▼</button>
+          <button class="pixel-button arrow-button right" data-move="right" type="button" aria-label="Move right">▶</button>
+        </div>
+      </div>
+
+      <div id="maze-complete-screen" class="maze-screen maze-complete-screen" hidden>
+        <div class="maze-kicker">YOU MADE IT</div>
+        <h1>FOUND US!</h1>
+        <p>The first Jaywalkers maze is complete.</p>
+        <button id="maze-complete-home" class="pixel-button pixel-button-large" type="button">HOME</button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
