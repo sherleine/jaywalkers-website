@@ -1,7 +1,5 @@
 /* The Jaywalkers opening transition — always starts at the landing page */
 (() => {
-  // Never let the browser restore a previous scroll position (for example, #about)
-  // when the site is opened or refreshed. The landing page must always be first.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
   if (window.location.hash) {
@@ -50,13 +48,11 @@
   document.body.prepend(intro);
   const title = intro.querySelector('.intro-title');
 
-  // Fade in the complete band name first.
   window.requestAnimationFrame(() => {
     window.scrollTo(0, 0);
     title.classList.add('is-visible');
   });
 
-  // After the fade/hold, move that exact title continuously into its homepage position.
   window.setTimeout(() => {
     if (!heroTitle) return;
 
@@ -92,3 +88,168 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('section').forEach((section) => observer.observe(section));
+
+/* =========================================
+   THE JAYWALKERS — MAZE EASTER EGG
+   ========================================= */
+(() => {
+  const game = document.getElementById('maze-game');
+  const openButton = document.querySelector('.jaywalkers-float');
+  const homeButton = document.getElementById('maze-home');
+  const startButton = document.getElementById('maze-start');
+  const completeHomeButton = document.getElementById('maze-complete-home');
+  const startScreen = document.getElementById('maze-start-screen');
+  const playScreen = document.getElementById('maze-play-screen');
+  const completeScreen = document.getElementById('maze-complete-screen');
+  const board = document.getElementById('maze-board');
+  const status = document.getElementById('maze-status');
+
+  if (!game || !openButton || !board) return;
+
+  // 1 = wall, 0 = walkable. This is the first hand-built maze.
+  // The character starts at the top-left and the star is the finish.
+  const maze = [
+    '111111111111111',
+    '100000100000001',
+    '101110101111101',
+    '101000100000101',
+    '101011111110101',
+    '101000000010101',
+    '101111111010101',
+    '100000001010001',
+    '111111101011101',
+    '100000001000001',
+    '101111111111101',
+  ];
+
+  const player = { row: 1, col: 1 };
+  const goal = { row: 9, col: 13 };
+  let started = false;
+
+  const moves = {
+    up: [-1, 0],
+    down: [1, 0],
+    left: [0, -1],
+    right: [0, 1],
+  };
+
+  function openGame() {
+    game.classList.add('is-open');
+    game.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    resetGame();
+  }
+
+  function closeGame() {
+    game.classList.remove('is-open');
+    game.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function resetGame() {
+    started = false;
+    player.row = 1;
+    player.col = 1;
+    startScreen.hidden = false;
+    playScreen.hidden = true;
+    completeScreen.hidden = true;
+    status.textContent = 'FIND YOUR WAY';
+    renderBoard();
+  }
+
+  function startGame() {
+    started = true;
+    player.row = 1;
+    player.col = 1;
+    startScreen.hidden = true;
+    playScreen.hidden = false;
+    completeScreen.hidden = true;
+    status.textContent = 'FIND YOUR WAY';
+    renderBoard();
+  }
+
+  function renderBoard() {
+    board.innerHTML = '';
+
+    maze.forEach((row, rowIndex) => {
+      [...row].forEach((cell, colIndex) => {
+        const tile = document.createElement('div');
+        tile.className = `maze-cell ${cell === '1' ? 'wall' : 'floor'}`;
+
+        if (rowIndex === goal.row && colIndex === goal.col) {
+          tile.classList.add('goal');
+        }
+
+        if (rowIndex === player.row && colIndex === player.col && started) {
+          const sprite = document.createElement('div');
+          sprite.className = 'maze-player';
+          sprite.setAttribute('aria-label', 'Player');
+          tile.appendChild(sprite);
+        }
+
+        board.appendChild(tile);
+      });
+    });
+  }
+
+  function move(direction) {
+    if (!started || !moves[direction]) return;
+
+    const [rowDelta, colDelta] = moves[direction];
+    const nextRow = player.row + rowDelta;
+    const nextCol = player.col + colDelta;
+
+    if (!maze[nextRow] || maze[nextRow][nextCol] !== '0') return;
+
+    player.row = nextRow;
+    player.col = nextCol;
+    renderBoard();
+
+    if (player.row === goal.row && player.col === goal.col) {
+      started = false;
+      window.setTimeout(() => {
+        playScreen.hidden = true;
+        completeScreen.hidden = false;
+      }, 220);
+    }
+  }
+
+  openButton.addEventListener('click', openGame);
+  homeButton.addEventListener('click', closeGame);
+  completeHomeButton.addEventListener('click', closeGame);
+  startButton.addEventListener('click', startGame);
+
+  game.querySelectorAll('[data-move]').forEach((button) => {
+    button.addEventListener('click', () => move(button.dataset.move));
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (!game.classList.contains('is-open')) return;
+
+    if (event.key === 'Escape') {
+      closeGame();
+      return;
+    }
+
+    const keyMoves = {
+      ArrowUp: 'up',
+      w: 'up',
+      W: 'up',
+      ArrowDown: 'down',
+      s: 'down',
+      S: 'down',
+      ArrowLeft: 'left',
+      a: 'left',
+      A: 'left',
+      ArrowRight: 'right',
+      d: 'right',
+      D: 'right',
+    };
+
+    const direction = keyMoves[event.key];
+    if (direction) {
+      event.preventDefault();
+      move(direction);
+    }
+  });
+})();
