@@ -35,56 +35,29 @@
 }
 
 /* =========================================
-   NIGEL — PLAYABLE PIXEL CHARACTER
+   NIGEL — STATIC PIXEL CHARACTER
    ========================================= */
 
-.maze-player {
+.maze-player-sprite {
   position: absolute;
   width: 92%;
   height: 92%;
   left: 4%;
   top: 4%;
   z-index: 8;
-  background-color: transparent !important;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  border: 0 !important;
-  box-shadow: none !important;
+  display: block;
+  object-fit: contain;
+  object-position: center;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  animation: nigelMouth 420ms steps(1, end) infinite;
   pointer-events: none;
 }
 
-/* Remove the old CSS character completely. These pseudo-elements were
-   creating the dark rectangular glitch over Nigel's face. */
-.maze-player::before,
-.maze-player::after {
-  content: none !important;
-  display: none !important;
-  background: none !important;
-  box-shadow: none !important;
-}
-
-@keyframes nigelMouth {
-  0%, 49% { background-image: url('assets/nigel-frame0.svg'); }
-  50%, 100% { background-image: url('assets/nigel-frame1.svg'); }
-}
-
 @media (max-width: 650px) {
-  .maze-player {
+  .maze-player-sprite {
     width: 96%;
     height: 96%;
     left: 2%;
     top: 2%;
-    background-size: contain;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .maze-guitar-sprite,
-  .maze-player {
-    animation: none;
   }
 }
