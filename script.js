@@ -106,8 +106,6 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
 
   if (!game || !openButton || !board) return;
 
-  // 1 = wall, 0 = walkable. This is the first hand-built maze.
-  // The character starts at the top-left and the guitar is the finish.
   const maze = [
     '111111111111111',
     '100000100000001',
@@ -179,6 +177,13 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
         if (rowIndex === goal.row && colIndex === goal.col) {
           tile.classList.add('goal');
           tile.setAttribute('aria-label', 'Red guitar goal');
+
+          const guitar = document.createElement('img');
+          guitar.className = 'maze-guitar-sprite';
+          guitar.src = 'assets/guitar-goal.svg';
+          guitar.alt = 'Red guitar';
+          guitar.setAttribute('aria-hidden', 'true');
+          tile.appendChild(guitar);
         }
 
         if (rowIndex === player.row && colIndex === player.col && started) {
