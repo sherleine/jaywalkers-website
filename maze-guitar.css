@@ -45,9 +45,12 @@
   left: 4%;
   top: 4%;
   z-index: 8;
+  background-color: transparent !important;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  border: 0 !important;
+  box-shadow: none !important;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   animation: nigelMouth 420ms steps(1, end) infinite;
