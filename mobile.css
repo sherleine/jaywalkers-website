@@ -1,6 +1,6 @@
 /* Phone-first refinements for The Jaywalkers */
 @media (max-width: 650px) {
-  html, body { width: 100%; overflow-x: hidden; }
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 
   .site-header {
     min-height: 68px;
@@ -21,6 +21,7 @@
 
   .hero {
     min-height: calc(100svh - 68px);
+    width: 100%;
     gap: 22px;
     padding: 28px 12px 24px;
   }
@@ -42,24 +43,34 @@
   }
 
   .hero-title {
-    margin-top: auto;
     width: 100%;
+    max-width: 100%;
+    margin-top: auto;
+    overflow: visible;
   }
 
+  /* Keep the complete band name inside a phone viewport. */
   .jaywalkers-float {
+    width: 100%;
     max-width: 100%;
-    padding: 6px 4px 14px;
-    line-height: .8;
+    min-width: 0;
+    padding: 6px 0 14px;
+    line-height: .82;
+    transform-origin: center bottom;
   }
 
   .jaywalkers-float .the-line {
-    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    font-size: clamp(1.5rem, 6vw, 2.1rem) !important;
+    letter-spacing: -.045em;
   }
 
   .jaywalkers-float .name-line {
-    font-size: clamp(2.45rem, 11vw, 3.8rem);
-    letter-spacing: -.07em;
+    display: block;
+    width: 100%;
+    font-size: clamp(2.2rem, 9.2vw, 3.7rem) !important;
+    letter-spacing: -.075em;
     white-space: nowrap;
+    text-align: center;
   }
 
   .about {
@@ -86,17 +97,9 @@
     padding-bottom: 76px;
   }
 
-  .videos-heading {
-    margin-bottom: 34px;
-  }
-
-  .video-grid {
-    gap: 24px;
-  }
-
-  .video-card {
-    padding: 10px;
-  }
+  .videos-heading { margin-bottom: 34px; }
+  .video-grid { gap: 24px; }
+  .video-card { padding: 10px; }
 
   .video-card h3 {
     font-size: 1.7rem;
@@ -108,21 +111,11 @@
     font-size: .9rem;
   }
 
-  .video-placeholder {
-    border-width: 2px;
-  }
+  .video-placeholder { border-width: 2px; }
+  .video-placeholder span { font-size: 1.5rem; }
 
-  .video-placeholder span {
-    font-size: 1.5rem;
-  }
-
-  .contact {
-    padding: 76px 18px 88px;
-  }
-
-  .contact h2 {
-    font-size: clamp(3.2rem, 15vw, 5rem);
-  }
+  .contact { padding: 76px 18px 88px; }
+  .contact h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
 
   .contact-links {
     flex-direction: column;
