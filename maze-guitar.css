@@ -38,30 +38,34 @@
    NIGEL — ORIGINAL PIXEL CHARACTER
    ========================================= */
 
-.maze-player {
-  width: 100%;
-  height: 100%;
-  position: relative;
+/* The maze uses the supplied static PNG directly.
+   Keep it large enough to read clearly on desktop and phone. */
+.maze-player-sprite {
+  position: absolute;
+  width: 165%;
+  height: 165%;
+  left: -32.5%;
+  top: -32.5%;
   z-index: 8;
-  background-image: url('assets/nigel-frame0.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  object-fit: contain;
+  object-position: center;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  animation: none !important;
   pointer-events: none;
 }
 
-/* Keep Nigel completely static in the maze. */
-.maze-player::before,
-.maze-player::after {
-  content: none !important;
-  display: none !important;
-}
-
 @media (max-width: 650px) {
-  .maze-player {
-    background-size: 110% 110%;
+  .maze-player-sprite {
+    width: 155%;
+    height: 155%;
+    left: -27.5%;
+    top: -27.5%;
+  }
+
+  .maze-guitar-sprite {
+    width: 115%;
+    height: 115%;
+    left: -7.5%;
+    top: -7.5%;
   }
 }
