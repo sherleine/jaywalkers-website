@@ -2,141 +2,45 @@
 @media (max-width: 650px) {
   html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
 
-  .site-header {
-    min-height: 68px;
-    padding: 10px 16px;
-  }
-
+  .site-header { min-height: 68px; padding: 10px 16px; }
   .brand img { width: 52px; }
-
-  .nav {
-    gap: 10px;
-    font-size: .54rem;
-    letter-spacing: .06em;
-  }
-
+  .nav { gap: 10px; font-size: .54rem; letter-spacing: .06em; }
   .nav a::after { display: none; }
-
   section { padding: 58px 18px; }
+  .hero { min-height: calc(100svh - 68px); width: 100%; gap: 22px; padding: 28px 12px 24px; }
+  .hero-photo-wrap, .hero-photo-placeholder { width: 92vw; max-width: 420px; }
+  .hero-photo-placeholder { aspect-ratio: 4 / 3; border-width: 3px; box-shadow: 8px 8px 0 var(--brown), -6px -6px 0 var(--orange); }
+  .hero-photo-placeholder span { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+  .hero-title { margin-top: auto; width: 100%; }
 
-  .hero {
-    min-height: calc(100svh - 68px);
-    width: 100%;
-    gap: 22px;
-    padding: 28px 12px 24px;
-  }
+  /* Large, but not oversized, mobile band-name sizing. */
+  .jaywalkers-float { max-width: 100%; padding: 6px 0 14px; line-height: .76; }
+  .jaywalkers-float .the-line { font-size: clamp(3.2rem, 13vw, 4.5rem); }
+  .jaywalkers-float .name-line { font-size: clamp(5.2rem, 24vw, 8rem); letter-spacing: -.085em; white-space: nowrap; }
 
-  .hero-photo-wrap,
-  .hero-photo-placeholder {
-    width: 92vw;
-    max-width: 420px;
-  }
-
-  .hero-photo-placeholder {
-    aspect-ratio: 4 / 3;
-    border-width: 3px;
-    box-shadow: 8px 8px 0 var(--brown), -6px -6px 0 var(--orange);
-  }
-
-  .hero-photo-placeholder span {
-    font-size: clamp(1.6rem, 8vw, 2.5rem);
-  }
-
-  .hero-title {
-    margin-top: auto;
-    width: 100%;
-  }
-
-  /* Double the mobile band-name size. */
-  .jaywalkers-float {
-    max-width: 100%;
-    padding: 6px 0 14px;
-    line-height: .76;
-  }
-
-  .jaywalkers-float .the-line {
-    font-size: clamp(4.4rem, 18vw, 6rem);
-  }
-
-  .jaywalkers-float .name-line {
-    font-size: clamp(7.2rem, 34vw, 11.6rem);
-    letter-spacing: -.085em;
-    white-space: nowrap;
-  }
-
-  .about {
-    min-height: auto;
-    padding-top: 72px;
-    padding-bottom: 72px;
-  }
-
-  .about h2,
-  .videos-heading h2 {
-    font-size: clamp(3rem, 14vw, 4.2rem);
-    margin-bottom: 30px;
-  }
-
-  .about-copy > p {
-    font-size: .95rem;
-    line-height: 1.65;
-    margin-bottom: 18px;
-  }
-
-  .videos {
-    min-height: auto;
-    padding-top: 70px;
-    padding-bottom: 76px;
-  }
-
+  .about { min-height: auto; padding-top: 72px; padding-bottom: 72px; }
+  .about h2, .videos-heading h2 { font-size: clamp(3rem, 14vw, 4.2rem); margin-bottom: 30px; }
+  .about-copy > p { font-size: .95rem; line-height: 1.65; margin-bottom: 18px; }
+  .videos { min-height: auto; padding-top: 70px; padding-bottom: 76px; }
   .videos-heading { margin-bottom: 34px; }
   .video-grid { gap: 24px; }
   .video-card { padding: 10px; }
-
-  .video-card h3 {
-    font-size: 1.7rem;
-    margin: 14px 6px 6px;
-  }
-
-  .video-card p {
-    margin: 0 6px 12px;
-    font-size: .9rem;
-  }
-
+  .video-card h3 { font-size: 1.7rem; margin: 14px 6px 6px; }
+  .video-card p { margin: 0 6px 12px; font-size: .9rem; }
   .video-placeholder { border-width: 2px; }
   .video-placeholder span { font-size: 1.5rem; }
-
   .contact { padding: 76px 18px 88px; }
   .contact h2 { font-size: clamp(3.2rem, 15vw, 5rem); }
-
-  .contact-links {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-    margin-top: 34px;
-  }
-
-  .contact-links a {
-    min-width: 0;
-    width: 100%;
-    padding: 14px 18px;
-  }
-
-  footer {
-    padding: 24px 18px;
-    gap: 12px;
-  }
-
+  .contact-links { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 34px; }
+  .contact-links a { min-width: 0; width: 100%; padding: 14px 18px; }
+  footer { padding: 24px 18px; gap: 12px; }
   footer img { width: 52px; }
   footer p { font-size: .8rem; }
 
-  /* Keep the maze comfortable on a phone too. */
   .maze-frame { padding: 14px; }
   .maze-home { top: 14px; left: 14px; min-width: 76px; padding: 9px 16px; }
   .maze-screen { min-height: calc(100svh - 28px); }
-  .maze-screen h1 {
-    font-size: clamp(3.8rem, 18vw, 5.5rem);
-    text-shadow: 4px 5px 0 var(--orange);
-  }
+  .maze-screen h1 { font-size: clamp(3.8rem, 18vw, 5.5rem); text-shadow: 4px 5px 0 var(--orange); }
   .maze-screen p { font-size: .9rem; margin: 20px 0 26px; }
   .pixel-button-large { min-width: 160px; padding: 13px 22px; }
   .maze-play-screen { padding-top: 54px; }
@@ -146,12 +50,5 @@
 }
 
 @media (hover: none) {
-  .video-card:hover,
-  .video-card:nth-child(2):hover,
-  .video-card:nth-child(3):hover {
-    animation-play-state: running;
-    scale: 1;
-    box-shadow: none;
-    filter: none;
-  }
+  .video-card:hover, .video-card:nth-child(2):hover, .video-card:nth-child(3):hover { animation-play-state: running; scale: 1; box-shadow: none; filter: none; }
 }
