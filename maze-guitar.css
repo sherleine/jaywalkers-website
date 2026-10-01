@@ -1,72 +1,88 @@
 /* =========================================
-   MAZE GOAL — SMALL PIXEL GUITAR
+   MAZE GOAL — RED PIXEL GUITAR
    ========================================= */
 
-/* Keep the guitar completely inside the goal cell. */
+/* Keep the whole guitar inside the goal tile. */
 .maze-cell.goal {
   position: relative;
   background: var(--orange);
   overflow: hidden;
 }
 
-/* Small red guitar body. */
+/* Pixel-art guitar body: two rounded bouts with a narrow waist. */
 .maze-cell.goal::after {
   content: "";
   position: absolute;
-  width: 34%;
-  height: 40%;
-  left: 27%;
-  top: 43%;
+  width: 48%;
+  height: 52%;
+  left: 25%;
+  top: 42%;
   z-index: 3;
-  background: #c92525;
-  border: 2px solid #2B170B;
+  background:
+    /* sound hole */
+    radial-gradient(circle at 50% 48%, #35190f 0 9%, transparent 10%),
+    /* bridge */
+    linear-gradient(#f2c16a 0 0) 42% 67% / 16% 5% no-repeat,
+    #c92727;
+  border: 2px solid #2b170b;
   box-shadow:
     2px 2px 0 #7d1717,
-    inset 2px 0 0 #ef5750;
+    inset 2px 0 0 #ef5a50,
+    inset -2px -2px 0 #941919;
   clip-path: polygon(
-    27% 0,
-    43% 12%,
-    57% 12%,
-    73% 0,
-    100% 25%,
-    87% 43%,
-    100% 60%,
-    73% 100%,
-    57% 88%,
-    43% 88%,
-    27% 100%,
-    0 60%,
-    13% 43%,
-    0 25%
+    36% 0,
+    64% 0,
+    67% 12%,
+    61% 25%,
+    72% 30%,
+    88% 29%,
+    100% 42%,
+    100% 68%,
+    88% 88%,
+    68% 100%,
+    50% 94%,
+    32% 100%,
+    12% 88%,
+    0 68%,
+    0 42%,
+    12% 29%,
+    28% 30%,
+    39% 25%,
+    33% 12%
   );
-  transform: rotate(-18deg);
-  transform-origin: center;
+  transform: rotate(-25deg);
+  transform-origin: 50% 50%;
   animation: pixelGuitarFloat 1.7s ease-in-out infinite;
 }
 
-/* Short neck and headstock. */
+/* Long neck + headstock. Small pixel blocks suggest tuning pegs. */
 .maze-cell.goal::before {
   content: "";
   position: absolute;
-  width: 8%;
-  height: 52%;
-  left: 55%;
-  top: 10%;
+  width: 9%;
+  height: 62%;
+  left: 47%;
+  top: 4%;
   z-index: 4;
-  background: #b51f1f;
-  border: 2px solid #2B170B;
-  box-shadow: 2px 2px 0 #7d1717;
+  background:
+    linear-gradient(#e7b45e 0 0) 50% 5% / 100% 8% no-repeat,
+    #8f1c1c;
+  border: 2px solid #2b170b;
+  box-shadow:
+    2px 2px 0 #7d1717,
+    -4px 6px 0 -2px #2b170b,
+    6px 11px 0 -2px #2b170b;
   transform: rotate(36deg);
-  transform-origin: 50% 85%;
+  transform-origin: 50% 88%;
   animation: pixelGuitarNeckFloat 1.7s ease-in-out infinite;
 }
 
 @keyframes pixelGuitarFloat {
   0%, 100% {
-    transform: rotate(-18deg) translate(0, 0);
+    transform: rotate(-25deg) translate(0, 0);
   }
   50% {
-    transform: rotate(-14deg) translate(0, -2px);
+    transform: rotate(-22deg) translate(0, -2px);
   }
 }
 
@@ -75,7 +91,7 @@
     transform: rotate(36deg) translate(0, 0);
   }
   50% {
-    transform: rotate(32deg) translate(0, -2px);
+    transform: rotate(33deg) translate(0, -2px);
   }
 }
 
