@@ -1,5 +1,7 @@
 /* The Jaywalkers opening transition */
 (() => {
+  document.body.classList.add('intro-active');
+
   const intro = document.createElement('div');
   intro.className = 'intro-screen';
   intro.setAttribute('aria-label', 'The Jaywalkers introduction');
@@ -79,7 +81,6 @@
       0% { clip-path: inset(0 0 0 0); opacity: 1; }
       100% { clip-path: inset(0 0 100% 0); opacity: 1; visibility: hidden; }
     }
-    .intro-screen + .grain { opacity: .075; }
     @media (prefers-reduced-motion: reduce) {
       .intro-screen,
       .intro-the,
