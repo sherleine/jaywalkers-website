@@ -1,7 +1,8 @@
-/* The Jaywalkers opening transition */
+/* The Jaywalkers opening transition — one continuous title movement */
 (() => {
   document.body.classList.add('intro-active');
 
+  const heroTitle = document.querySelector('.hero-title');
   const intro = document.createElement('div');
   intro.className = 'intro-screen';
   intro.setAttribute('aria-label', 'The Jaywalkers introduction');
@@ -20,13 +21,12 @@
     body.intro-active .hero-photo-wrap,
     body.intro-active .hero-title {
       opacity: 0;
-      transform: translateY(28px);
     }
 
     .site-header,
     .hero-photo-wrap,
     .hero-title {
-      transition: opacity 900ms ease, transform 900ms cubic-bezier(.2,.75,.2,1);
+      transition: opacity 850ms ease;
     }
 
     .intro-screen {
@@ -38,17 +38,23 @@
       background: #D19214;
       color: #3F240F;
       overflow: hidden;
-      animation: introExit 900ms cubic-bezier(.77,0,.18,1) 2600ms forwards;
+      pointer-events: none;
     }
 
     .intro-title {
+      position: fixed;
+      left: 50%;
+      top: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       line-height: .76;
-      transform: translateY(4vh);
+      transform: translate(-50%, -50%);
+      transform-origin: center center;
+      will-change: transform;
+      transition: transform 1500ms cubic-bezier(.2,.78,.18,1);
     }
 
     .intro-the,
@@ -62,64 +68,30 @@
     .intro-the {
       color: #F2C980;
       font-size: clamp(4rem, 10vw, 9rem);
-      opacity: 0;
-      transform: translateY(40px) scale(.92);
-      animation: introThe 900ms cubic-bezier(.2,.75,.2,1) 250ms forwards;
     }
 
     .intro-name {
       color: #3F240F;
       font-size: clamp(5rem, 14vw, 14rem);
-      opacity: 0;
-      transform: translateY(65px) scale(.92);
-      animation: introName 1100ms cubic-bezier(.2,.75,.2,1) 600ms forwards;
     }
 
-    .intro-screen::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 7px;
-      background: #3F240F;
-      transform: scaleX(0);
-      transform-origin: left;
-      animation: introLine 1800ms cubic-bezier(.2,.75,.2,1) 700ms forwards;
+    /* The mustard curtain leaves while the same title travels to its homepage position. */
+    .intro-screen.is-moving {
+      animation: revealHome 1500ms cubic-bezier(.2,.78,.18,1) forwards;
     }
 
-    @keyframes introThe {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes introName {
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes introLine {
-      to { transform: scaleX(1); }
-    }
-
-    @keyframes introExit {
-      0% { clip-path: inset(0 0 0 0); opacity: 1; }
-      100% { clip-path: inset(0 0 100% 0); opacity: 1; visibility: hidden; }
+    @keyframes revealHome {
+      0% { clip-path: inset(0 0 0 0); }
+      100% { clip-path: inset(0 0 100% 0); visibility: hidden; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .intro-screen,
-      .intro-the,
-      .intro-name,
-      .intro-screen::after {
-        animation: none !important;
-      }
-
       .intro-screen { display: none; }
       body.intro-active { overflow: auto; }
       body.intro-active .site-header,
       body.intro-active .hero-photo-wrap,
       body.intro-active .hero-title {
         opacity: 1;
-        transform: none;
       }
     }
   `;
@@ -127,10 +99,43 @@
   document.head.appendChild(style);
   document.body.prepend(intro);
 
+  // Start the homepage reveal first, then move the exact same title into place.
+  window.requestAnimationFrame(() => {
+    window.setTimeout(() => {
+      if (!heroTitle) return;
+
+      const target = heroTitle.getBoundingClientRect();
+      const title = intro.querySelector('.intro-title');
+      const introRect = title.getBoundingClientRect();
+
+      const targetCenterX = target.left + target.width / 2;
+      const targetCenterY = target.top + target.height / 2;
+      const introCenterX = introRect.left + introRect.width / 2;
+      const introCenterY = introRect.top + introRect.height / 2;
+
+      const scale = Math.min(
+        target.width / introRect.width,
+        target.height / introRect.height
+      );
+
+      const x = targetCenterX - introCenterX;
+      const y = targetCenterY - introCenterY;
+
+      title.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`;
+      intro.classList.add('is-moving');
+
+      // Reveal the real homepage elements underneath at the same moment the
+      // moving title arrives, so there is no second title or visual break.
+      document.querySelector('.site-header').style.opacity = '1';
+      document.querySelector('.hero-photo-wrap').style.opacity = '1';
+      heroTitle.style.opacity = '1';
+    }, 1500);
+  });
+
   window.setTimeout(() => {
     intro.remove();
     document.body.classList.remove('intro-active');
-  }, 3700);
+  }, 3100);
 })();
 
 const observer = new IntersectionObserver((entries) => {
