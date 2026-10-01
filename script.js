@@ -27,8 +27,8 @@
     @keyframes revealHome { 0% { clip-path: inset(0 0 0 0); } 100% { clip-path: inset(0 0 100% 0); visibility: hidden; } }
     @media (max-width: 650px) {
       .intro-title { width: 100%; max-width: 100vw; }
-      .intro-the { font-size: clamp(2.9rem, 11.5vw, 4.1rem); }
-      .intro-name { font-size: clamp(4.6rem, 21vw, 7.2rem); letter-spacing: -.085em; white-space: nowrap; }
+      .intro-the { font-size: clamp(2.8rem, 11vw, 4rem); }
+      .intro-name { font-size: clamp(4.4rem, 20.5vw, 7rem); letter-spacing: -.085em; white-space: nowrap; }
     }
     @media (prefers-reduced-motion: reduce) {
       .intro-screen { display: none; }
