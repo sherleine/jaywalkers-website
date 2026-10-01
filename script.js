@@ -107,7 +107,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
   if (!game || !openButton || !board) return;
 
   // 1 = wall, 0 = walkable. This is the first hand-built maze.
-  // The character starts at the top-left and the star is the finish.
+  // The character starts at the top-left and the guitar is the finish.
   const maze = [
     '111111111111111',
     '100000100000001',
@@ -153,7 +153,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
     startScreen.hidden = false;
     playScreen.hidden = true;
     completeScreen.hidden = true;
-    status.textContent = 'FIND YOUR WAY';
+    status.textContent = 'FIND THE GUITAR';
     renderBoard();
   }
 
@@ -164,7 +164,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
     startScreen.hidden = true;
     playScreen.hidden = false;
     completeScreen.hidden = true;
-    status.textContent = 'FIND YOUR WAY';
+    status.textContent = 'FIND THE GUITAR';
     renderBoard();
   }
 
@@ -178,6 +178,7 @@ document.querySelectorAll('section').forEach((section) => observer.observe(secti
 
         if (rowIndex === goal.row && colIndex === goal.col) {
           tile.classList.add('goal');
+          tile.setAttribute('aria-label', 'Red guitar goal');
         }
 
         if (rowIndex === player.row && colIndex === player.col && started) {
