@@ -8,13 +8,20 @@
   overflow: visible;
 }
 
-/* Actual pixel-art guitar sprite, kept crisp rather than smoothed. */
+/* Remove the old goal/star marker — the guitar itself is the goal. */
+.maze-cell.goal::before,
+.maze-cell.goal::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Larger pixel-art guitar sprite, kept crisp rather than smoothed. */
 .maze-guitar-sprite {
   position: absolute;
-  width: 82%;
-  height: 82%;
-  left: 9%;
-  top: 9%;
+  width: 115%;
+  height: 115%;
+  left: -7.5%;
+  top: -7.5%;
   z-index: 5;
   object-fit: contain;
   image-rendering: pixelated;
@@ -29,7 +36,7 @@
     transform: translateY(0) rotate(-2deg);
   }
   50% {
-    transform: translateY(-3px) rotate(2deg);
+    transform: translateY(-4px) rotate(2deg);
   }
 }
 
