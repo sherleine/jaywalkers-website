@@ -47,20 +47,20 @@
     width: 100%;
   }
 
-  /* Larger mobile band-name sizing while keeping the full name on-screen. */
+  /* Extra-large mobile band-name sizing. */
   .jaywalkers-float {
     max-width: 100%;
-    padding: 6px 2px 14px;
-    line-height: .78;
+    padding: 6px 0 14px;
+    line-height: .76;
   }
 
   .jaywalkers-float .the-line {
-    font-size: clamp(2rem, 8vw, 2.7rem);
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 
   .jaywalkers-float .name-line {
-    font-size: clamp(3rem, 13.5vw, 4.8rem);
-    letter-spacing: -.075em;
+    font-size: clamp(3.6rem, 17vw, 5.8rem);
+    letter-spacing: -.085em;
     white-space: nowrap;
   }
 
