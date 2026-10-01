@@ -47,16 +47,17 @@ h2 em { color: var(--orange); font-style: normal; }
 .about h2 { margin-bottom: 55px; }
 .about-copy { max-width: 850px; margin: 0 auto; }
 .about-copy > p { max-width: 760px; margin: 0 auto 24px; line-height: 1.8; font-size: 1.08rem; }
-.videos { min-height: 90vh; }
+.videos { min-height: 90vh; overflow: visible; }
 .videos-heading { display: flex; align-items: end; justify-content: space-between; gap: 40px; margin-bottom: 60px; }
 .videos-heading h2 { flex: 1; }
-.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: center; }
-.video-card { color: var(--brown); background: var(--cream); padding: 14px; transform: translateY(0) rotate(-1deg); animation: videoFloatOne 5s ease-in-out infinite; transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease; will-change: transform; position: relative; z-index: 1; cursor: pointer; }
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: center; overflow: visible; }
+.video-card { color: var(--brown); background: var(--cream); padding: 14px; transform: translateY(0) rotate(-1deg); animation: videoFloatOne 5s ease-in-out infinite; transition: scale .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s ease, filter .4s ease; will-change: transform, scale; position: relative; z-index: 1; cursor: pointer; }
 .video-card:nth-child(2) { transform: translateY(0) rotate(1.2deg); animation-name: videoFloatTwo; animation-delay: -.9s; }
 .video-card:nth-child(3) { transform: translateY(-2px) rotate(-.5deg); animation-name: videoFloatThree; animation-delay: -1.7s; }
+/* Use the independent CSS scale property so the hover expansion cannot be cancelled by the floating transform animation. */
 .video-card:hover,
 .video-card:nth-child(2):hover,
-.video-card:nth-child(3):hover { animation-play-state: paused; transform: translateY(-14px) scale(1.09) rotate(0deg); box-shadow: 16px 20px 0 rgba(63,36,15,.32); z-index: 10; }
+.video-card:nth-child(3):hover { animation-play-state: paused; scale: 1.12; box-shadow: 16px 20px 0 rgba(63,36,15,.32); filter: brightness(1.02); z-index: 10; }
 @keyframes videoFloatOne { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-9px) rotate(.2deg); } }
 @keyframes videoFloatTwo { 0%,100% { transform: translateY(0) rotate(1.2deg); } 50% { transform: translateY(-12px) rotate(.3deg); } }
 @keyframes videoFloatThree { 0%,100% { transform: translateY(-2px) rotate(-.5deg); } 50% { transform: translateY(-10px) rotate(-1.4deg); } }
